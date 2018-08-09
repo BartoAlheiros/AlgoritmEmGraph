@@ -1,7 +1,7 @@
+
 package main;
 
 import grafo.GraphAdj;
-import grafo.GraphMat;
 import grafo.Node;
 
 import java.io.BufferedReader;
@@ -17,6 +17,53 @@ public class Main {
 		for (Node n: g.getNodes()) {
 			System.out.println(n);
 		}
+		/*Arestas do Vértice 1*/  
+		/*ArrayList<Aresta> arestasV1 = new ArrayList<Aresta>();
+    arestasV1.add(new Aresta("2"));
+    arestasV1.add(new Aresta(5));*/
+
+		/*Arestas do Vértice 2*/  
+		/*ArrayList<Aresta> arestasV2 = new ArrayList<Aresta>();
+    arestasV2.add(new Aresta(1));
+    arestasV2.add(new Aresta(5));
+    arestasV2.add(new Aresta(3));*/
+
+		/*Arestas do Vértice 3*/  
+		/*ArrayList<Aresta> arestasV3 = new ArrayList<Aresta>();
+    arestasV3.add(new Aresta(2));
+    arestasV3.add(new Aresta(4));*/
+
+		/*Arestas do Vértice 4*/  
+		/*ArrayList<Aresta> arestasV4 = new ArrayList<Aresta>();
+    arestasV4.add(new Aresta(5));
+    arestasV4.add(new Aresta(3));
+    arestasV4.add(new Aresta(6));*/
+
+		/*Arestas do Vértice 5*/  
+		/*ArrayList<Aresta> arestasV5 = new ArrayList<Aresta>();
+    arestasV5.add(new Aresta(1));
+    arestasV5.add(new Aresta(4));
+    arestasV5.add(new Aresta(2));*/
+
+		/*Arestas do Vértice 6*/  
+		/*ArrayList<Aresta> arestasV6 = new ArrayList<Aresta>();
+    arestasV6.add(new Aresta(4));*/
+
+		/*Adicionando os Vertices do Grafo*/
+		/*ArrayList<Vertice> vertices = new ArrayList<Vertice>();
+    vertices.add(new Vertice(1, arestasV1));
+    vertices.add(new Vertice(2, arestasV2));
+    vertices.add(new Vertice(3, arestasV3));
+    vertices.add(new Vertice(4, arestasV4));
+    vertices.add(new Vertice(5, arestasV5));
+    vertices.add(new Vertice(6, arestasV6));*/
+
+		/*Grafo g = new Grafo(vertices);
+
+    for (Vertice vertice: g.vertices) {
+      System.out.print(vertice.v + ": ");
+      System.out.println(vertice.e);
+    }*/
 	}
 
 	static GraphAdj carregaArquivo() {
@@ -69,29 +116,7 @@ public class Main {
 		return g;
 	}
 
-	/* Recebe um grafo torneio T e retorna seu caminho Hamiltoniano. */
-	public static ArrayList<Node> findHamiltPath(GraphMat T) {
-		GraphMat result;
 
-		if (T.getN() == 2) {
-			result = T;
-		} else {
-			// G = T - v:
-			GraphAdj G = new GraphAdj( (ArrayList<Node>)nodesT.subList( 0, nodesT.size() - 1) );
-			findHamiltpath(G);
 
-		}
-		return result;
-	}
 
-	/* gets a n x n matrix and returns an n-1 x n-1 one. */
-	public static String[][] filterMatrx (String[][] mat) {
-		for (int i = 0; i < mat.length; i++) {
-			for (int j = 0; j < mat[0].length; j++) { 
-				if (i < mat.length - 1 || j < mat[0].length - 1) {
-					
-				}
-			} 
-		}
-	}
 }
