@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Node {
-	private String r; // rótulo do Nó
+	public String r; // rótulo do Nó
 	public int v; // valor do Nó
 	public int ante; // antecessor
 	private ArrayList<Integer> adj; // lista de adjacências do Nó

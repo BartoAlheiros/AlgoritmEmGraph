@@ -28,4 +28,18 @@ public class GraphAdj extends Graph {
 	public void setNode(Node n) {
 		this.nodes.add(n);
 	}
+	
+	// retorna o valor do nó, recebendo como argumento seu rótulo
+	public int getNode(String r) {
+		
+		int value = 0;
+		
+		for (Node n: this.nodes) {
+			if(n.r.equals(r)) {
+				value = n.v;
+			}
+		}
+		
+		return value;
+	}
 }
