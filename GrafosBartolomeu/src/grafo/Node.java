@@ -7,7 +7,8 @@ public class Node {
 	public String r; // rótulo do Nó
 	public int v; // valor do Nó
 	public int ante; // antecessor
-	private ArrayList<Integer> adj; // lista de adjacências do Nó
+	private ArrayList<Node> adj; // lista de adjacências do Nó
+	public int weight;
 
 	public Node() {
 		this.adj = new ArrayList<>();
@@ -27,19 +28,19 @@ public class Node {
 		this.v = v;
 	}
 
-	public ArrayList<Integer> getAdj() {
+	public ArrayList<Node> getAdj() {
 		return this.adj;
 	}
 
 	public String toString() {
-		return this.r + " " + Integer.toString(this.v) + " - " + Arrays.toString(this.adj.toArray());
+		return Integer.toString(this.v);
 	}
 	
-	public void setAdj(ArrayList<Integer> adj) {
+	public void setAdj(ArrayList<Node> adj) {
 		this.adj = adj;
 	}
 
-	public boolean equals(String r, int v) {
+	public boolean equals(String r) {
 		if ( this.r.equals(r) ) 
 			return true;
 		else

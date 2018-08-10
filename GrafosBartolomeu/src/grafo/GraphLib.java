@@ -32,7 +32,20 @@ public class GraphLib {
 		}
 	}
 	
-	public boolean bellmanFord() {
+	public boolean bellmanFord(GraphAdj G, String r) {
+		
+		ArrayList<Node> nodes = G.getNodes();
+		
+		this.initialize(G, r);
+		
+		for (int i = 1; i < G.getNodes().size() - 1; i++) {
+			for (Node x: nodes) {
+				for (Node y: x.getAdj()) {
+					this.relax(G.getNode(x.r), y.v, y.weight); 
+				}
+			}
+		}
+		
 		return false;
 	}
 }

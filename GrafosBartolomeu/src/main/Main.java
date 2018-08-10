@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main {
 
@@ -15,7 +16,7 @@ public class Main {
 		GraphAdj g = carregaArquivo();
 
 		for (Node n: g.getNodes()) {
-			System.out.println(n);
+			System.out.println(n.r+" "+"- "+n+" "+Arrays.toString(n.getAdj().toArray()));
 		}
 		/*Arestas do Vértice 1*/  
 		/*ArrayList<Aresta> arestasV1 = new ArrayList<Aresta>();
@@ -71,6 +72,7 @@ public class Main {
 		FileReader arq;
 
 		try {
+			Node nd = null;
 			arq = new FileReader("./data/grafo1.grf");
 			BufferedReader lerArq = new BufferedReader(arq);
 			String linha = "", r = ""; // r é o rótulo do nó.
@@ -82,39 +84,55 @@ public class Main {
 			for (int i = 0; i < numVertices; i++) {
 				int j = 0;
 
+
 				linha = lerArq.readLine(); // le uma linha do arquivo e salva na String linha
 				String[] strB = linha.split(" "); // separa linha entre espaços e salva no array de Strings strB
-				Node nd = new Node();
-				ArrayList<Integer> adj = new ArrayList<>(); // adj é a lista de adjacências do nó.
+				ArrayList<Node> adj = new ArrayList<>(); // adj é a lista de adjacências do nó.
 
 				/* Lê uma linha do arquivo. */
 				while (j < strB.length) {
-					if (j == 0) {
-						r = strB[0]; // se a posição do contador for 0, insere a string lida em uma variável r, que é o rótulo do nó 
+					/* Se estiver se tratar do primeiro Nó e estiver no primeiro item do Array strB faz: */
+					if (i == 0 && j == 0) {
+						nd = new Node();
+						r = strB[0]; // salva o rótulo
 						nd.setV(i);
-						nd.setR(r);
-						g.setNode(nd);
-					} else {
-						/*Se não for da posição 0, temos arestas para a lista de adjacencias. Assim,
-						 * simplismente elas são adicionadas a lista de adjacencias do nó.*/
+						nd.setR(r); // atribui rótulo ao nó
+						g.setNode(nd); // inclui o nó no grafo
 
-						adj.add(Integer.parseInt(strB[j]));
+					} else if (i > 0 && j == 0) {
+						/* Se não se tratar do primeiro Nó e estiver no primeiro item do Array strB procura em todos os 
+						 * nós do grafo se algum tem o mesmo valor de i - já foi adicionado - mas está com o rótulo nulo, atualiza o rótulo com 
+						 * a palavra de strB[0] */
+						for (Node nd2: g.getNodes()) {
+							if( nd2.v == i && nd2.r == null) {
+								nd2.setR(strB[0]);
+							}
+						}
+
 					}
+				
 					j++;	
+
 				}
-				// Seta a lista de adjacências do nó
-				nd.setAdj(adj);
 			}
-			lerArq.close();
-		} catch (IOException e) {
-			System.err.printf("Erro na leitura do arquivo: %s.\n", e.getMessage());
+
+			adj.add(nd);
 		}
-		//System.out.println(g.getNodes().get(2));
-		/*for (Node n: g.getNodes().get(1).getAdj()) {
+	
+	}
+	// Seta a lista de adjacências do nó
+	nd.setAdj(adj);
+}
+lerArq.close();
+} catch (IOException e) {
+	System.err.printf("Erro na leitura do arquivo: %s.\n", e.getMessage());
+}
+//System.out.println(g.getNodes().get(2));
+/*for (Node n: g.getNodes().get(1).getAdj()) {
 			System.out.print(n);
 		}*/
-		return g;
-	}
+return g;
+}
 
 
 

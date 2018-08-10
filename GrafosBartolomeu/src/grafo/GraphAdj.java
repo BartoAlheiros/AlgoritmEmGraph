@@ -29,6 +29,9 @@ public class GraphAdj extends Graph {
 		this.nodes.add(n);
 	}
 	
+	// returns true if a node exists on the graph and false if it doesn't with an int argument
+	public boolean exists(int ) {}
+	
 	// retorna o valor do nó, recebendo como argumento seu rótulo
 	public int getNode(String r) {
 		
