@@ -1,10 +1,5 @@
 package grafo;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class GraphAdj extends Graph {
@@ -29,20 +24,34 @@ public class GraphAdj extends Graph {
 		this.nodes.add(n);
 	}
 	
-	// returns true if a node exists on the graph and false if it doesn't with an int argument
-	public boolean exists(int ) {}
-	
-	// retorna o valor do nó, recebendo como argumento seu rótulo
-	public int getNode(String r) {
+	/* Se um determinado nó está na lista de nós, retorna sua referência. */
+	public Node getNode(String r) {
 		
-		int value = 0;
+		Node result = null;
 		
 		for (Node n: this.nodes) {
-			if(n.r.equals(r)) {
-				value = n.v;
+			if(n.getLabel().equals(r)) {
+				result = n;
 			}
 		}
 		
-		return value;
+		return result;
+	}
+	
+	public Node getNode(int i) {
+		Node result = null;
+		
+		for(Node n: this.nodes) {
+			if(n.value == i) {
+				result = n;
+			}
+		}
+		
+		return result;
+	}
+	
+	public void updateNode(int i, Node n) {
+		this.nodes.add(i, n);
+		
 	}
 }

@@ -1,47 +1,51 @@
 package grafo;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Node {
-	public String r; // rótulo do Nó
-	public int v; // valor do Nó
-	public int ante; // antecessor
-	private ArrayList<Node> adj; // lista de adjacências do Nó
+	
+	public int value; // valor do Nó "chave"
+	private String label; // rótulo do Nó
+	public Node ante; // antecessor
+	private ArrayList<Node> adjacList; // lista de adjacências do Nó
 	public int weight;
 
 	public Node() {
-		this.adj = new ArrayList<>();
+		this.adjacList = new ArrayList<>();
 	}
 
 	public Node(int v, String r) {
-		this.v = v;
-		this.r = r;
-		this.adj = new ArrayList<>();
+		this.value = v;
+		this.label = r;
+		this.adjacList = new ArrayList<>();
 	}
-
-	public void setR(String r) {
-		this.r = r;
+	 
+	public String getLabel() {
+		return this.label;
 	}
 	
-	public void setV(int v) {
-		this.v = v;
+	public void setLabel(String lbl) {
+		this.label = lbl;
+	}
+	
+	public void setValue(int v) {
+		this.value = v;
 	}
 
-	public ArrayList<Node> getAdj() {
-		return this.adj;
+	public ArrayList<Node> getAdjacencyList() {
+		return this.adjacList;
 	}
 
 	public String toString() {
-		return Integer.toString(this.v);
+		return Integer.toString(this.value);
 	}
 	
-	public void setAdj(ArrayList<Node> adj) {
-		this.adj = adj;
+	public void setAdjacencyList(ArrayList<Node> adj) {
+		this.adjacList = adj;
 	}
 
-	public boolean equals(String r) {
-		if ( this.r.equals(r) ) 
+	public boolean equals(int value, String label) {
+		if ( this.value == value && label.equals(this.label)) 
 			return true;
 		else
 			return false;

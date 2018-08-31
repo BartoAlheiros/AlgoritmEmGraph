@@ -17,7 +17,7 @@ public class GraphLib {
 		ArrayList<Node> nodes = G.getNodes();
 		
 		for (Node n: nodes) {
-			cost[n.v] = Integer.MAX_VALUE/2;
+			cost[n.value] = Integer.MAX_VALUE/2;
 			n.ante = -1;
 		}
 		
@@ -41,7 +41,7 @@ public class GraphLib {
 		for (int i = 1; i < G.getNodes().size() - 1; i++) {
 			for (Node x: nodes) {
 				for (Node y: x.getAdj()) {
-					this.relax(G.getNode(x.r), y.v, y.weight); 
+					this.relax(G.getNode(x.label), y.value, y.weight); 
 				}
 			}
 		}
