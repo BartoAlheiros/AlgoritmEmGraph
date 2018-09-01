@@ -1,23 +1,54 @@
-
 package main;
-
-import grafo.GraphAdj;
-import grafo.Node;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
+
+import grafo.GraphAdj;
+import grafo.Node;
 
 public class Main {
+	
+	public static GraphAdj g = null;
 
 	public static void main(String[] args) {
-		GraphAdj g = carregaArquivo();
+		
+		Scanner input = new Scanner(System.in);
+		Integer x, y, z;
+		ArrayList<Integer> adjacencyList = null;
+		
+		g = carregaArquivo();
 
 		for (Node n: g.getNodes()) {
-			System.out.println(n.getLabel()+" "+"- "+n+" "+Arrays.toString(n.getAdjacencyList().toArray()));
+			System.out.println(n);
 		}
+		
+		System.out.println("Rótulo de 0: " + g.getNode(0).getR());
+		System.out.println("Rótulo de 2: " + g.getNode(2).getR());
+		
+		System.out.println("Digite uma nova aresta: ");
+		System.out.print("Origem: ");
+		x = input.nextInt();
+		
+		System.out.println("Destino: ");
+		y = input.nextInt();
+		
+		addEdge(x,y);
+		
+		for (Node n: g.getNodes()) {
+			System.out.println(n);
+		}
+		
+		System.out.print("Digite um nó que deseja saber seus sucessores: ");
+		z = input.nextInt();
+
+		adjacencyList = getAdjacencyList(z);
+		System.out.println(Arrays.toString(adjacencyList.toArray()));
+		
+		input.close();
 	}
 
 	static GraphAdj carregaArquivo() {
@@ -25,100 +56,40 @@ public class Main {
 		FileReader arq;
 
 		try {
-			Node nd = null;
 			arq = new FileReader("./data/grafo1.grf");
 			BufferedReader lerArq = new BufferedReader(arq);
 			String linha = "", r = ""; // r é o rótulo do nó.
 
-			// lê a primeira linha do arquivo e armazena na variavel inteira nodesNumber
-			int nodesNumber = Integer.parseInt(lerArq.readLine());   
+			// lê a primeira linha do arquivo e armazena na variavel inteira numVertices
+			int numVertices = Integer.parseInt(lerArq.readLine());   
 
-			/* Laço que percorre todas as linhas do arquivo e salva cada nó, juntamente com sua 
-			 * lista de adjacências. */
-			for (int i = 0; i < nodesNumber; i++) {
+			/* Laço que percorre todas as linhas do arquivo e salva(...)*/
+			for (int i = 0; i < numVertices; i++) {
 				int j = 0;
 
-
-				linha = lerArq.readLine(); // le uma linha do arquivo - a partir da segunda - e salva na String linha 
+				linha = lerArq.readLine(); // le uma linha do arquivo e salva na String linha
 				String[] strB = linha.split(" "); // separa linha entre espaços e salva no array de Strings strB
-				ArrayList<Node> adjacList = new ArrayList<>(); // adj é a lista de adjacências do nó.
-				
-				if (i==0) {
-					while (j < strB.length) {
-						if (j == 0) {
+				Node nd = new Node();
+				ArrayList<Integer> adj = new ArrayList<>(); // adj é a lista de adjacências do nó.
 
-							// adiciona primeiro noh no grafo.
-							nd = new Node();
-							r = strB[0]; 			// salva o rótulo
-							nd.setValue(i);	 			// salva valor do nó	'0'.
-							nd.setLabel(r); 			// atribui rótulo ao nó
-							g.setNode(nd); 		// salva o primeiro nó no grafo
-
-							// se i ainda é igual a 0(linha do arquivo referente ao primeiro noh), mas o j é maior que 0, quer dizer que estamos na lista de adjacências
-							// do primeiro nó. Então vamos criá-la(já foi instanciada 'adj') e adicioná-la ao noh criado acima(o primeiro).	
-							// como ainda não estamos considerando grafos com laços, todo valor lido é um novo noh que será adicionado à lista
-						}else {
-							nd = g.getNode(strB[0]);
-							Node nd2 = new Node();
-							nd2.setValue(Integer.parseInt(strB[j]));
-							g.setNode(nd2);
-							nd.getAdjacencyList().add(nd2);
-						}
-
-					}
-				}else {
-					if(j == 0) {
-
-						r = strB[0];
-
-						Node result = g.getNode(i);
-						if (result != null) {
-							result.setLabel(r);
-							Integer index = g.getNodes().indexOf(result);
-							g.getNodes().set(index, result);
-						}
-					}else {
-						Integer value;
-						value = Integer.parseInt(strB[j]);
-						
-						Node instance= g.getNode(value);
-						
-						if(instance == null) {
-							
-							Node nd2 = new Node();
-							nd2.setValue(value);
-							g.getNodes().add(nd2);
-							
-							adjacList.add(nd2);
-						} else {
-							
-							Node nd2 = new Node();
-							Integer index = nd2.value;
-							nd2 = g.getNode(index);
-							
-							adjacList.add(nd2);
-						}
-					}
-
-				}
-
-				/* Lê a primeira linha do arquivo. */
+				/* Lê uma linha do arquivo. */
 				while (j < strB.length) {
-					/* ---- Só roda uma vez. ---- 
-					 * 
-					 * Se se tratar do primeiro Nó(i=0) e estiver no primeiro item do Array 'strB'(j=0), faz: 
-					 * */
-					if (i == 0) {
-						
-					// i > 0
+					if (j == 0) {
+						r = strB[0]; // se a posição do contador for 0, insere a string lida em uma variável r, que é o rótulo do nó 
+						nd.setV(i);
+						nd.setR(r);
+						g.setNode(nd);
 					} else {
+						/*Se não for da posição 0, temos arestas para a lista de adjacencias. Assim,
+						 * simplismente elas são adicionadas a lista de adjacencias do nó.*/
 
-											}
+						adj.add(Integer.parseInt(strB[j]));
+					}
 					j++;	
 				}
-
+				// Seta a lista de adjacências do nó
+				nd.setAdj(adj);
 			}
-
 			lerArq.close();
 		} catch (IOException e) {
 			System.err.printf("Erro na leitura do arquivo: %s.\n", e.getMessage());
@@ -126,6 +97,24 @@ public class Main {
 
 		return g;
 	}
+	
+	// adiciona aresta
+	public static void addEdge(Integer x, Integer y) {
+		
+		Node nodeX = g.getNode(x);
+		Node nodeY = g.getNode(y);
+		
+		nodeX.getAdj().add(nodeY.v);
+	}
 
-
+	public static ArrayList<Integer> getAdjacencyList(Integer x) {
+		
+		Node node = g.getNode(x);
+		
+		return node.getAdj(); 
+	}
+	
+	public static boolean edgeExists(Integer x, Integer y) {
+		
+	}
 }

@@ -2,7 +2,8 @@ package grafo;
 
 import java.util.ArrayList;
 
-public class GraphAdj extends Graph {
+public class GraphAdj {
+	
 	private ArrayList<Node> nodes;
 
 	/* Construtor para inicializar o grafo. A diferenca é que escolhemos utilizar 
@@ -20,29 +21,13 @@ public class GraphAdj extends Graph {
 		return this.nodes;
 	}
 	
-	public void setNode(Node n) {
-		this.nodes.add(n);
-	}
-	
-	/* Se um determinado nó está na lista de nós, retorna sua referência. */
-	public Node getNode(String r) {
+	// dado um inteiro v, retorna o Nó correspondente a este valor.
+	public Node getNode(Integer v) {
 		
-		Node result = null;
-		
-		for (Node n: this.nodes) {
-			if(n.getLabel().equals(r)) {
-				result = n;
-			}
-		}
-		
-		return result;
-	}
-	
-	public Node getNode(int i) {
 		Node result = null;
 		
 		for(Node n: this.nodes) {
-			if(n.value == i) {
+			if(n.v == v) {
 				result = n;
 			}
 		}
@@ -50,8 +35,7 @@ public class GraphAdj extends Graph {
 		return result;
 	}
 	
-	public void updateNode(int i, Node n) {
-		this.nodes.add(i, n);
-		
+	public void setNode(Node n) {
+		this.nodes.add(n);
 	}
 }

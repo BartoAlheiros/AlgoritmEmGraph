@@ -1,51 +1,49 @@
 package grafo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Node {
-	
-	public int value; // valor do Nó "chave"
-	private String label; // rótulo do Nó
-	public Node ante; // antecessor
-	private ArrayList<Node> adjacList; // lista de adjacências do Nó
-	public int weight;
+	private String r; // rótulo do Nó
+	public int v; // valor do Nó
+	private ArrayList<Integer> adj; // lista de adjacências do Nó
 
 	public Node() {
-		this.adjacList = new ArrayList<>();
+		this.adj = new ArrayList<>();
 	}
 
 	public Node(int v, String r) {
-		this.value = v;
-		this.label = r;
-		this.adjacList = new ArrayList<>();
-	}
-	 
-	public String getLabel() {
-		return this.label;
-	}
-	
-	public void setLabel(String lbl) {
-		this.label = lbl;
-	}
-	
-	public void setValue(int v) {
-		this.value = v;
+		this.v = v;
+		this.r = r;
+		this.adj = new ArrayList<>();
 	}
 
-	public ArrayList<Node> getAdjacencyList() {
-		return this.adjacList;
+	public void setR(String r) {
+		this.r = r;
+	}
+	
+	public String getR() {
+		return this.r;
+	}
+	
+	public void setV(int v) {
+		this.v = v;
+	}
+
+	public ArrayList<Integer> getAdj() {
+		return this.adj;
 	}
 
 	public String toString() {
-		return Integer.toString(this.value);
+		return this.r + " " + Integer.toString(this.v) + " - " + Arrays.toString(this.adj.toArray());
 	}
 	
-	public void setAdjacencyList(ArrayList<Node> adj) {
-		this.adjacList = adj;
+	public void setAdj(ArrayList<Integer> adj) {
+		this.adj = adj;
 	}
 
-	public boolean equals(int value, String label) {
-		if ( this.value == value && label.equals(this.label)) 
+	public boolean equals(String r, int v) {
+		if ( this.r.equals(r) ) 
 			return true;
 		else
 			return false;
