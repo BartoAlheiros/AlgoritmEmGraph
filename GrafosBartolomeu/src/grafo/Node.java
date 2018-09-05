@@ -7,6 +7,10 @@ public class Node {
 	private String r; // rótulo do Nó
 	public int v; // valor do Nó
 	private ArrayList<Integer> adj; // lista de adjacências do Nó
+	private String cor;
+	private Integer d;
+	private Integer ante;
+	private Integer cost;
 
 	public Node() {
 		this.adj = new ArrayList<>();
@@ -26,12 +30,40 @@ public class Node {
 		return this.r;
 	}
 	
-	public void setV(int v) {
-		this.v = v;
+	public String getCor() {
+		return cor;
+	}
+
+	public void setCor(String cor) {
+		this.cor = cor;
+	}
+
+	public Integer getD() {
+		return d;
+	}
+
+	public void setD(Integer d) {
+		this.d = d;
+	}
+
+	public Integer getAnte() {
+		return ante;
+	}
+
+	public void setAnte(Integer ante) {
+		this.ante = ante;
 	}
 
 	public ArrayList<Integer> getAdj() {
 		return this.adj;
+	}
+
+	public Integer getCost() {
+		return cost;
+	}
+
+	public void setCost(Integer w) {
+		this.cost = w;
 	}
 
 	public String toString() {
