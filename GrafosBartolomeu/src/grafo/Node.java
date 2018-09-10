@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Node {
+	
 	private String r; // rótulo do Nó
 	public int v; // valor do Nó
 	private ArrayList<Integer> adj; // lista de adjacências do Nó
@@ -11,6 +12,8 @@ public class Node {
 	private Integer d;
 	private Integer ante;
 	private Integer cost;
+	private Integer initialTime;
+	private Integer finalTime;
 
 	public Node() {
 		this.adj = new ArrayList<>();
@@ -44,6 +47,22 @@ public class Node {
 
 	public void setD(Integer d) {
 		this.d = d;
+	}
+	
+	public Integer getInitialTime() {
+		return finalTime;
+	}
+
+	public void setInitialTime(Integer init) {
+		this.initialTime = init;
+	}
+
+	public Integer getFinalTime() {
+		return finalTime;
+	}
+
+	public void setFinalTime(Integer fin) {
+		this.finalTime = fin;
 	}
 
 	public Integer getAnte() {

@@ -52,6 +52,10 @@ public class GraphAdj {
 		
 	}
 	
+	public void removeEdge(Edge e) {
+		this.edges.remove(e);
+	}
+	
 	// dado um inteiro v, retorna o Nó correspondente a este valor.
 	public Node getNode(Integer v) {
 		
@@ -69,5 +73,10 @@ public class GraphAdj {
 	
 	public void setNode(Node n) {
 		this.nodes.add(n);
+	}
+	
+	public void removeNode(Integer v) {
+		Node nd = this.getNode(v);
+		this.nodes.remove(nd);
 	}
 }

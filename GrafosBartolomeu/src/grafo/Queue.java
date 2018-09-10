@@ -53,17 +53,19 @@ public class Queue {
 			} 
 		}
 		
-		System.out.println("Fila de Prioridades: ");
+		nodeToRemove = this.findByCost(min);
+		
+		/* System.out.println("Fila de Prioridades: ");
 		System.out.println(Arrays.toString(this.nodes.toArray()));
 		
 		System.out.println();
 		System.out.println("Mínimo: " + min);
 		
-		nodeToRemove = this.findByCost(min);
+		
 		
 		System.out.println("Noh a remover: " + nodeToRemove);
 		
-		System.out.println("Índice do noh a remover: " + nodes.indexOf(nodeToRemove));
+		System.out.println("Índice do noh a remover: " + nodes.indexOf(nodeToRemove)); */
 
 		return this.nodes.remove(nodes.indexOf(nodeToRemove));
 
